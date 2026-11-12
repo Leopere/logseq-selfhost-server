@@ -1,0 +1,25 @@
+# Copyright (c) 2026 Colin Knapp, https://colinknapp.com
+# SPDX-License-Identifier: AGPL-3.0-only
+services:
+  sync:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    image: logseq-selfhost-server:local
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8787:8787"
+    environment:
+      DB_SYNC_BASE_URL: "${LOGSEQ_PUBLIC_URL:-http://localhost:8787}"
+      LOGSEQ_GRANTS_FILE: /app/data/grants.json
+    volumes:
+      - sync-data:/app/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+volumes:
+  sync-data:

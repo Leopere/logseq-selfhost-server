@@ -1,0 +1,9 @@
+data/
+runtime/
+.env*
+*.pem
+*.key
+*.private*
+__pycache__/
+node_modules/
+grants.json

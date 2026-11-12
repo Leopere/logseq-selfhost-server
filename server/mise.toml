@@ -1,0 +1,6 @@
+# Copyright (c) 2026 Colin Knapp, https://colinknapp.com
+# SPDX-License-Identifier: AGPL-3.0-only
+[tools]
+node = '24.10.0'
+java = 'openjdk-21.0.2'
+clojure = '1.12.3.1577'

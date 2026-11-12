@@ -1,0 +1,19 @@
+# Only source and license metadata needed for the self-hosted server.
+**
+!server/
+!server/**
+!LICENSE
+!NOTICE
+!LICENSING.md
+!compose.yaml
+!third_party/
+!third_party/**
+server/**/__pycache__/
+server/**/*.pyc
+server/**/*.private*
+server/**/node_modules/
+server/**/data/
+server/**/runtime/
+server/**/*.pem
+server/**/*.key
+server/**/.env*

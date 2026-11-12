@@ -1,0 +1,11 @@
+Copyright (c) 2026 Colin Knapp, https://colinknapp.com
+
+Colin's original code and modifications in this project are licensed under
+GNU Affero General Public License version 3 (AGPL-3.0-only). See LICENSE.
+This replaces the earlier restrictive notice for this release only; it does
+not claim ownership of upstream code or change third-party terms.
+
+Logseq and logseq-selfhost retain their upstream copyrights and AGPL notices.
+See LICENSING.md, server/upstream.json, and third_party/ for source attribution.
+Node.js, Debian, mise, Clojure, Java, pnpm and dependency packages retain their
+own licenses. Their inclusion is not a claim of Colin's copyright over them.

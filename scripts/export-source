@@ -1,0 +1,28 @@
+#!/usr/bin/env python3
+"""Export corresponding source from a built server without touching runtime data.
+
+Copyright (c) 2026 Colin Knapp, https://colinknapp.com
+SPDX-License-Identifier: AGPL-3.0-only
+"""
+from pathlib import Path
+import subprocess
+import sys
+
+if len(sys.argv) != 3:
+    raise SystemExit('Usage: scripts/export-source CONTAINER NEW_OUTPUT_DIRECTORY')
+container, target = sys.argv[1], Path(sys.argv[2])
+if not container or container.startswith('-'):
+    raise SystemExit('A container name is required')
+target.mkdir(mode=0o755, parents=False, exist_ok=False)
+subprocess.run(['docker', 'cp', container + ':/app/corresponding-source/.', str(target)], check=True)
+subprocess.run(['docker', 'cp', container + ':/app/auth', str(target / 'auth')], check=True)
+subprocess.run(['docker', 'cp', container + ':/app/admin', str(target / 'admin')], check=True)
+root = Path(__file__).resolve().parents[1]
+for name in ['compose.yaml', 'third_party']:
+    import shutil
+    source = root / name
+    if source.is_dir():
+        shutil.copytree(source, target / name)
+    else:
+        shutil.copy2(source, target / name)
+print('Corresponding source exported; no runtime data or credentials copied.')

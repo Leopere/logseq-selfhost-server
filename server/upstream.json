@@ -1,0 +1,31 @@
+{
+  "schema": "logseq-selfhost-source/v1",
+  "license": "AGPL-3.0-only",
+  "logseq": {
+    "repository": "https://github.com/logseq/logseq",
+    "revision": "69da7e2215b336cc5123dafb2a1686996e39596c",
+    "license_url": "https://github.com/logseq/logseq/blob/69da7e2215b336cc5123dafb2a1686996e39596c/LICENSE.md",
+    "component": "deps/db-sync; shared dependencies follow deps.edn and pnpm-lock.yaml",
+    "license_sha256": "2467b8901ba62f7708c479944468a677897472a39ecbda1d23818ecf9538620b"
+  },
+  "recipe": {
+    "repository": "https://github.com/yshalsager/logseq-selfhost",
+    "revision": "ead4eb47db7e98fde39124b77dfd8d269118b406",
+    "path": "images/sync/Dockerfile",
+    "license": "AGPL-3.0-only",
+    "changes": "Pinned public Logseq source and exact tools; source-level authorization patches; console grants; corresponding source included."
+  },
+  "tools": {
+    "mise": "2026.10.23",
+    "node": "24.10.0",
+    "java": "openjdk-21.0.2",
+    "clojure": "1.12.3.1577",
+    "pnpm": "10.33.0"
+  },
+  "former_images": {
+    "private_wrapper": "ghcr.io/leopere/cisl2-logseq-sync@sha256:c89c0584b25bbdd6649b02d9e90e3ab5005fd6c7db95e8f7d3e1fb7ad5c67964",
+    "upstream": "ghcr.io/yshalsager/logseq-selfhost-sync@sha256:0b4dad699d60e950f123f9be80905b4e6b6fc8e386a110a387231eb6b97d3a4a",
+    "runtime_dependency": false
+  },
+  "reproducibility": "Pinned source, dependency lockfiles, build tools and base images; source rebuildable without the former private image. Byte-identical Docker output is not promised; OS package repositories and tool download mirrors are external inputs."
+}
