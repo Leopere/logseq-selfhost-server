@@ -78,7 +78,7 @@ is needed for this small command interface.
 
 The Dockerfile builds pinned public Logseq source, with hash-checked source
 patches and locked dependencies. It does not pull Colin's old private image.
-See [LICENSING.md](LICENSING.md), [LICENSE](LICENSE), [NOTICE](NOTICE) and
+See [LICENSING.md](../LICENSING.md), [LICENSE](../LICENSE), [NOTICE](../NOTICE) and
 `server/upstream.json` for AGPL-3.0 terms and upstream attribution. When serving
 other users, provide the exact corresponding source. Export the source from
 your image using `scripts/export-source <container> <output-directory>`,

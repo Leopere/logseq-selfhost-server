@@ -11,9 +11,9 @@
     "README.md": "31a19a562ac121e0c1b1b9df5bfd257a617629a4afce6a35fbbd4d571ec8f41e",
     "VALIDATION.md": "797728db838c5d81dd49b1d5a8312df0353a923d876a044408f802cd52ac93e8",
     "compose.yaml": "2cd32e6be6eed39d8382cb8ec022829277be3871a52c9ca631fe73279ec06941",
-    "scripts/export-source": "4702b2e4a214047b39ab918740462a4e5cd559766c9c70668400a090d0a50132",
-    "server/Dockerfile": "4f9f8953d43e2d6000a9dc7bc8f630cabccebba772acf1f94b74b55c85234c9e",
-    "server/README.md": "31a19a562ac121e0c1b1b9df5bfd257a617629a4afce6a35fbbd4d571ec8f41e",
+    "scripts/export-source": "1fae231d31c4ec77ed92a31cfc95ab7d88b3f3e10ead313c86423ff5220c8038",
+    "server/Dockerfile": "fd5dee31aee32195c79cdf08114a3c150e7668d9fbab2c751f48ef54dc1a2074",
+    "server/README.md": "af98e2fc32f8c925f2a663eb521ee481a3e9156df1bdde74e1516233607ae5a1",
     "server/admin/SKILL.md": "44c379274360e38787e2556f98ddd74a56d59a28c8938616b7619fb59967df3d",
     "server/auth/code-identity.cjs": "2576e38d59cf7619b6488e98b4a16757f3110954d6ac69b2218aac068b68959d",
     "server/auth/entrypoint.cjs": "79a58956fd8740f422e3ecd1c46de1140a7710fa4cca57e70e8b8756daf6ebdc",
@@ -30,5 +30,10 @@
     "third_party/Logseq-LICENSE.md": "2467b8901ba62f7708c479944468a677897472a39ecbda1d23818ecf9538620b",
     "third_party/logseq-selfhost-LICENSE": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
     "worker.example.mjs": "ec211ec6f7300ab715aa4b503850604f584e98468f3014cb655b6dbf2ac96e05"
-  }
+  },
+  "source_worktree_adjustments": [
+    "server/Dockerfile: complete source bundle uses the standalone build layout",
+    "server/README.md: relative license links",
+    "scripts/export-source: copy only image-bundled corresponding source"
+  ]
 }

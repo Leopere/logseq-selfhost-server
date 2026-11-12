@@ -53,7 +53,7 @@ COPY --chown=nonroot:nonroot --from=build /src/deps/db-sync/worker /app/worker
 COPY --chown=nonroot:nonroot --from=build /tmp/runtime-data /app/data
 COPY --from=build /tmp/logseq-source.tar.gz /app/corresponding-source/logseq-source.tar.gz
 COPY --from=build /src/LICENSE.md /app/corresponding-source/UPSTREAM-LICENSE.md
-COPY server/patch-source.py server/upstream.json server/mise.toml server/Dockerfile /app/corresponding-source/
+COPY server/ /app/corresponding-source/server/
 COPY LICENSE NOTICE LICENSING.md compose.yaml /app/corresponding-source/
 COPY third_party/ /app/corresponding-source/third_party/
 COPY --chown=nonroot:nonroot server/auth/ /app/auth/
