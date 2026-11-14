@@ -1,4 +1,4 @@
-# Logseq self-host sync server
+# Logseq self-host client and sync server
 
 Run Logseq's native encrypted database sync on your own server. The operator
 must issue or import each identity from the local console. There is no account
@@ -58,12 +58,21 @@ docker compose exec sync /nodejs/bin/node /app/auth/logseq-sync-admin.cjs list
 docker compose exec sync /nodejs/bin/node /app/auth/logseq-sync-admin.cjs revoke <id>
 ```
 
-Use a compatible Logseq self-host client, configure your server URL, and paste
-the issued LS2 sync code. The compact code does not contain the server URL.
-Older preview clients fix their URL to Colin’s service. Use the updated
-client with an editable sync server URL for an independent deployment. An old client may generate a local
-code itself; that code gets no server access unless you deliberately import
-its public subject. Client bearer refresh alone never enrolls an identity.
+Use the matching Logseq Selfhost client. On a fresh install, enter the server
+URL and issued LS2 sync code. Existing users can open **Sync → Sync settings…**
+to change them. New installations require an explicit server URL and code.
+The client does not enroll users or choose Colin’s service for them.
+
+The compact code does not contain a server URL. Enter the same URL and code
+on your other devices. HTTP is accepted only for localhost development;
+remote URLs require HTTPS. Changing the URL for the same identity preserves
+your local profile, offline edits and encryption keys, including after a
+temporary tunnel address changes. The client verifies access before saving
+the settings and restarts to use the new address.
+
+Older previews have a fixed server URL and need an updated client.
+An old client may generate a code locally; that code gets no server access
+unless the operator deliberately imports its public subject.
 
 The registry is `/app/data/grants.json`, mode 0600. It stores public IDs,
 labels, kind and creation/revocation times. It never stores codes or E2EE
@@ -115,3 +124,22 @@ Cloudflare is optional. `worker.example.mjs` shows the narrow front used for
 this protocol. Bind `SYNC_ORIGIN` to your own Cloudflare VPC origin service
 and set its internal origin hostname in that example. The standalone origin
 enforces the same narrow protocol without Cloudflare or a fleet.
+
+## Client build source
+
+`client/` and `scripts/build-logseq-{selfhost,linux}-client.py` contain the
+matching desktop client recipe. It patches hash-checked official Logseq 2.0.2
+application archives and retains native Logseq encryption. The Linux build
+uses the official pinned x86_64 ZIP; the Mac build requires macOS and the
+configured Apple signing identity. A desktop application runs on the user’s
+computer; the Compose services host the sync server and its optional tunnel.
+A browser application container is not included in this release.
+
+Jenkins owns release builds, signatures and publication. Its trusted controller
+is separate from this public source repository. Maintainers set
+`LOGSEQ_DELIVERY_CONTROLLER` to that controller’s `delivery/public.py` and use
+`scripts/deliver run --phase dependencies|server|tunnel|linux --revision <sha>`.
+Observe the returned queue/build handle with `scripts/deliver observe --build <n>`.
+The dependency phase prepares an exported cache; it is not a runnable server.
+Container publication and compiled client acceptance are recorded separately
+in [VALIDATION.md](VALIDATION.md).

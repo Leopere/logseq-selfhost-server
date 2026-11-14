@@ -1,0 +1,26 @@
+{
+  "source_revision": "74f2ad50262e385462b2135a206620ba68a16382",
+  "files": {
+    "client/base/bootstrap.cjs": "4775884943f10291d5b1b2dfbb4d163c8be213e682d9603868d37b8953d50e7f",
+    "client/base/patch-plan.json": "a32cc87b723b75a42696894e5d6c767cf0094599bdcc7981622b8fb74a532357",
+    "client/base/preload-bridge.js": "8bc0f400e2603a15b8b5410218fb2c5816bea4b1931ffe2a20ae4b6beb5a8275",
+    "client/base/preload-guard.cjs": "2c2f56fb610b947f0a272e0a84ac8bb9a59a0234552d33be5767cdb48ed86ebd",
+    "client/base/renderer-auth-file.js": "387f4239b9a6c1af2c7f437012b7054d5fde059a0d624ef15565e5871f81bdc6",
+    "client/base/renderer-bootstrap.js": "dd53bbca1e741c487da6e4e2ad1e9e64d055486e9268fc912355824d6ead6a4b",
+    "client/base/renderer-refresh.js": "bfe9cbef10c97110dce8b62d7b14011b4c5931ee2ebd431d819c021ee6fad1dc",
+    "client/base/renderer-rsa-password.js": "85529ee9f9410f08036bf3a905a4329aebc9128cf99e39ae1280e4f966ba2f3f",
+    "client/base/renderer-user-event.js": "75c92862e5d2fe4ada36beabd76c3e9411c3d5b54956e69029b63c09ba94e478",
+    "client/base/renderer-user-info.js": "a33360503c988cb5da0eeb16f26be12d6660cf17a97c97ae8425617b04ae5222",
+    "client/base/renderer-worker-state.js": "8703f1e9babd7c70e45866c557e8f63cee4ea46192a6556e4bf667cd7b2b93a5",
+    "client/base/selfhost-client.patch": "d0d80b69c7324165baad08348087d7d906c8c1db1dbe897962c19f45304d332b",
+    "client/base/selfhost-main.cjs": "5f74860a2fc911136a28407ee414f676e945814a2b89080fb3a9cb038a38ed10",
+    "client/base/selfhost-setup-preload.cjs": "bc41cc7b3fda1d31a85e3e27319ccdfc6e445c4a18176858b6ea791f23deeaf2",
+    "client/base/selfhost-setup.html": "7f4b2cf7f59c31cba2fc984c0e6f4a8135928bb8e238e79141d05142ced1d44a",
+    "client/base/selfhost-setup.js": "10271e5c88b0a5327ac79e5d9a2a438f09511f240d47356f9549bc1e66cfb608",
+    "client/base/worker-auth-refresh.js": "02b7ec871ac74300c27ec69142f7c22c61c8fafef01eb4bb9141cee4bc7229e1",
+    "scripts/build-logseq-selfhost-client.py": "4a0df19663a4ac7aeff5f649a0ac372296c7f37abf514d648f2ce8c602783ab0",
+    "scripts/build-logseq-linux-client.py": "f56076493591727691bbc5edd2de386225f70b0f85a7286cd4c218aa5e47305b",
+    "scripts/inspect-logseq-linux-client.py": "34921d82fcbc62bfc98a5f212b424ff0946b02e45b42b8b6dad744e368818c3b"
+  },
+  "modifications": "Explicit operator-selected sync URL and issued code; no hosted default for new installations; identity profiles and vaults stay stable when the URL changes. source_revision records the original base import."
+}

@@ -1,0 +1,129 @@
+{
+  "schema": "cisl2-logseq-client-replacement-patch/v1",
+  "operations": [
+    {
+      "file": "electron.js",
+      "kind": "replace",
+      "before": "y0.join(A0.app.getPath(\"home\"),\".logseq\")",
+      "after": "y0.join(A0.app.getPath(\"userData\"),\"logseq-config\")",
+      "count": 2
+    },
+    {
+      "file": "js/preload.js",
+      "kind": "replace-fragment",
+      "before": "contextBridge.exposeInMainWorld('apis', {",
+      "fragment": "preload-bridge.js"
+    },
+    {
+      "file": "js/main.js",
+      "kind": "replace",
+      "before": "cu(a,$APP.A([\"logseq\",\"auth.json\"],0))",
+      "after": "cu(a,$APP.A([\".config\",\"cisl2\",\"logseq-selfhost\",\"auth.json\"],0))",
+      "count": 1
+    },
+    {
+      "file": "js/main.js",
+      "kind": "replace",
+      "before": "Vp(\"refresh-token\")",
+      "after": "localStorage.getItem(\"refresh-token\")",
+      "count": 1
+    },
+    {
+      "file": "js/main.js",
+      "kind": "function",
+      "start": "Vxb=function(){",
+      "end": "\nWxb=function(){",
+      "fragment": "renderer-auth-file.js"
+    },
+    {
+      "file": "js/main.js",
+      "kind": "function",
+      "start": "gyb=function(){",
+      "end": "\niyb=function(){",
+      "fragment": "renderer-refresh.js"
+    },
+    {
+      "file": "js/main.js",
+      "kind": "function",
+      "start": "iyb=function(){",
+      "end": "\nnyb=function(a){",
+      "fragment": "renderer-bootstrap.js"
+    },
+    {
+      "file": "js/main.js",
+      "kind": "function",
+      "start": "oBc=function(){",
+      "end": "\nXAc=function(){",
+      "fragment": "renderer-worker-state.js"
+    },
+    {
+      "file": "js/main.js",
+      "kind": "function",
+      "start": "Qyb=function(){",
+      "end": ";Syb=function(a){",
+      "fragment": "renderer-user-info.js"
+    },
+    {
+      "file": "js/main.js",
+      "kind": "function",
+      "start": "RI(hyb,function(a){",
+      "end": ";RI(UGe,function(a){",
+      "fragment": "renderer-user-event.js"
+    },
+    {
+      "file": "js/db-worker-node.js",
+      "kind": "replace",
+      "before": "var poc=require(\"keytar\"),qoc=",
+      "after": "require(\"node:net\").setDefaultAutoSelectFamilyAttemptTimeout(2000);var poc=require(\"keytar\"),qoc=",
+      "count": 1
+    },
+    {
+      "file": "js/db-worker-node.js",
+      "kind": "replace",
+      "before": "~/logseq/auth.json",
+      "after": "~/.config/cisl2/logseq-selfhost/auth.json",
+      "count": 3
+    },
+    {
+      "file": "js/db-worker-node.js",
+      "kind": "function",
+      "start": "function $2b(){",
+      "end": "function I4(){",
+      "fragment": "worker-auth-refresh.js"
+    },
+    {
+      "file": "js/db-worker-node.js",
+      "kind": "replace",
+      "before": "r.join(n,\"Library\",\"Application Support\",\"Logseq\",\"runtime-locks\")",
+      "after": "r.join(n,\"Library\",\"Application Support\",\"Logseq Selfhost\",\"runtime-locks\")",
+      "count": 1
+    },
+    {
+      "file": "js/main.js",
+      "kind": "replace-fragment",
+      "before": "case \"request-e2ee-password\":return $APP.T($APP.S(null),function(){return $APP.T($APP.S($APP.fh(new $APP.G(null,2,5,$APP.H,[kac,b],null))),function(g){return $APP.T($APP.S(g),function(h){return $APP.S(new $APP.M(null,1,[Zv,h],null))})})});",
+      "fragment": "renderer-rsa-password.js"
+    },
+    {
+      "file": "js/db-worker-node.js",
+      "kind": "replace",
+      "before": "\"Logseq E2EE\"",
+      "after": "\"Logseq Selfhost E2EE\"",
+      "count": 3
+    },
+    {
+      "file": "js/db-worker-node.js",
+      "kind": "replace",
+      "before": "\"kv-store.json\"",
+      "after": "\"kv-store-selfhost.json\"",
+      "count": 1
+    },
+    {
+      "file": "node_modules/@logseq/graph-lifecycle/index.cjs",
+      "kind": "replace",
+      "before": "const args = [script, '--repo',",
+      "after": "const args = ['--network-family-autoselection-attempt-timeout=2000', script, '--repo',",
+      "count": 1
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema": "cisl2-logseq-selfhost-client-patch/v1",
+  "version": "2.0.2",
+  "architecture": "arm64",
+  "dmg_sha256": "b9a16b6ddef1659aa3c2301ce37a0336377644bbf1016051e3d19d1a66776314",
+  "asar_sha256": "aac5f9e5af43837157c9f3b576752d156cca086e43fae23acf2a2e3e566c8b6d",
+  "bundle_id": "com.nixc.logseq-selfhost",
+  "files": {
+    "electron.js": "5fba4aacf15f4bfb6b4df2c146101bd75aeaa85768dca370def1d69f889710f4",
+    "js/preload.js": "dcfcc903bfa7b4fb4a02393e7bb1b4808db77e809a1c003d21c395c5ba8df3f6",
+    "js/main.js": "c2627046d85d8d840ad56a13fdc4e3e4cdfa18731fbcd4eae205157be344cfca",
+    "package.json": "984e09eef67c65d868fa6a9a66b1c5553aac012e280fc8d023bd496c72f8fd01",
+    "js/db-worker-node.js": "6531c797de1993fb4851a921f06d88701ac3ff27846068a3b6a1c76f3a7eb3e0",
+    "node_modules/@logseq/graph-lifecycle/index.cjs": "d563ebfdb9506e33ba07402440fa93cd6885fc014ec9fe1dfa0cebca75845603"
+  }
+}

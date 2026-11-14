@@ -21,7 +21,7 @@ license for this release.
 | Build tools | Debian, mise 2026.10.23, Node 24.10.0, OpenJDK 21.0.2, Clojure CLI 1.12.3.1577, pnpm 10.33.0 | Upstream tool licenses; pinned configuration in `server/mise.toml` |
 | JavaScript dependencies | `@cfworker/json-schema`, `@cloudflare/codemode`, `@modelcontextprotocol/sdk`, `@sentry/cloudflare`, `@sentry/node`, `better-sqlite3`, `mldoc`, `shadow-cljs`, `transit-js`, `ws`, `zod` | Exact resolved versions/integrities and transitive graph in upstream `deps/db-sync/pnpm-lock.yaml`; retain package license files, including dependencies unused by the narrow network gate |
 | Clojure dependencies | `deps/db-sync/deps.edn` plus `deps/common`, `deps/db`, `deps/outliner` and their dependency files; includes Clojure, Logseq Datascript, Transit, cljs-bean, shadow-cljs, glogi, Reitit | Preserve each upstream license and corresponding source; complete pinned Logseq tree is included in the image |
-| Customized desktop client in the private development repository | Logseq 2.0.2 app plus `client/` modifications; original wrapper hashes in `client/base-source.json` | Logseq derivative stays AGPL; Electron and other bundled dependencies retain their licenses; excluded from the server-only public candidate |
+| Customized desktop client source included in this repository | Logseq 2.0.2 app plus `client/` modifications; original wrapper hashes in `client/base-source.json` | Logseq derivative stays AGPL; Electron and other bundled dependencies retain their licenses; matching build recipes and patches are included under `client/` and `scripts/`; desktop binaries are separate artifacts |
 
 The former image's local provenance ledger records wrapper build source
 `7493f02cbca316580abb0ed2f5c24b38eac022a4`, upstream wrapper source

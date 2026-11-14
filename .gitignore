@@ -7,3 +7,8 @@ runtime/
 __pycache__/
 node_modules/
 grants.json
+*.tar.gz
+*.zip
+*.dmg
+*.part
+/release/
