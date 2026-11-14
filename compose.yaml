@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: server/Dockerfile
-    image: logseq-selfhost-server:local
+    image: "${LOGSEQ_SYNC_IMAGE:-logseq-selfhost-server:local}"
     restart: unless-stopped
     ports:
       - "127.0.0.1:8787:8787"

@@ -6,6 +6,14 @@ service, public signup, network admin API, or network MCP endpoint.
 
 Copyright (c) 2026 Colin Knapp, https://colinknapp.com
 
+## Public URL setup
+
+See the [root guide](../README.md) for the optional generated HTTPS tunnel
+and the stable-domain setup. Read the current generated address with
+`./scripts/sync-url` from the repository root. An access code and a server URL
+are separate: the URL identifies the operator’s server; the code authorizes
+an identity on that server.
+
 ## Start the server
 
 Install Docker with Compose. From this source directory:

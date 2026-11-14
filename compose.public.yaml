@@ -1,0 +1,35 @@
+# Optional generated HTTPS address; use with compose.yaml.
+# Copyright (c) 2026 Colin Knapp, https://colinknapp.com
+# SPDX-License-Identifier: AGPL-3.0-only
+services:
+  sync:
+    environment:
+      LOGSEQ_PUBLIC_URL_FILE: /run/logseq-tunnel/public-url.json
+    volumes:
+      - tunnel-url:/run/logseq-tunnel:ro
+    depends_on:
+      tunnel:
+        condition: service_healthy
+  tunnel:
+    build:
+      context: .
+      dockerfile: server/tunnel/Dockerfile
+    image: "${LOGSEQ_TUNNEL_IMAGE:-logseq-selfhost-tunnel:local}"
+    restart: unless-stopped
+    volumes:
+      - tunnel-url:/run/logseq-tunnel
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD", "python3", "/app/supervise.py", "--check"]
+      interval: 2s
+      timeout: 2s
+      retries: 5
+      start_period: 90s
+volumes:
+  tunnel-url:

@@ -15,3 +15,13 @@ private development repository; local tests do not establish deployment.
 
 The combined program is AGPL-3.0-only. Supply matching corresponding source
 to users of a modified network service and retain upstream notices.
+
+## Public URL work — November 14, 2026
+
+The public repository is `Leopere/logseq-selfhost-server`. Optional generated
+HTTPS routing is prepared in `compose.public.yaml`. Local URL validation,
+stale-lease and restart checks are separate from an actual tunnel connection.
+The external Jenkins controller is tracked in `Leopere/logseq-sync`,
+`delivery/public.py`; job `deliver-logseq-public` owns image builds, signatures,
+publication and disposable runtime checks. No permanent shared service is
+created. Actual build handles and live acceptance will be recorded below.

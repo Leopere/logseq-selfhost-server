@@ -2,7 +2,7 @@
 # Adapted from yshalsager/logseq-selfhost images/sync/Dockerfile (AGPL-3.0).
 # Changes Copyright (c) 2026 Colin Knapp, https://colinknapp.com
 # SPDX-License-Identifier: AGPL-3.0-only
-FROM debian:trixie-slim@sha256:020c0d20b9880058cbe785a9db107156c3c75c2ac944a6aa7ab59f2add76a7bd AS build
+FROM debian:trixie-slim@sha256:020c0d20b9880058cbe785a9db107156c3c75c2ac944a6aa7ab59f2add76a7bd AS dependencies
 ARG TARGETARCH
 ENV DEBIAN_FRONTEND=noninteractive MISE_YES=1
 ENV PATH=/root/.local/bin:$PATH
@@ -36,13 +36,19 @@ WORKDIR /src/deps/db-sync
 RUN mise exec -- corepack enable
 # Keep this package's dependencies self-contained; do not inherit root hoisting.
 RUN --mount=type=cache,target=/root/.local/share/pnpm/store mise exec -- pnpm install --frozen-lockfile --ignore-workspace
-RUN --mount=type=cache,target=/root/.m2/repository mise exec -- pnpm run build:node-adapter
+# Keep Maven/Git dependencies in the exported layer: ephemeral runner caches
+# disappear when the runner is reclaimed.
+RUN mise exec -- clojure -P -M:cljs
+
+FROM dependencies AS build
+RUN mise exec -- pnpm run build:node-adapter
 RUN CI=true mise exec -- pnpm prune --prod --ignore-workspace
 RUN mkdir -p /tmp/runtime-data
 
 FROM gcr.io/distroless/nodejs24-debian12:nonroot@sha256:14d42e2511532589a7c7e01a753667a74fcc96266e137e8125006b87b0c32d0a
 WORKDIR /app
 LABEL org.opencontainers.image.description="Operator-authorized Logseq sync server" \
+      org.opencontainers.image.source="https://github.com/Leopere/logseq-selfhost-server" \
       org.opencontainers.image.licenses="AGPL-3.0-only" \
       org.opencontainers.image.authors="Colin Knapp <https://colinknapp.com>" \
       org.opencontainers.image.upstream-revision="69da7e2215b336cc5123dafb2a1686996e39596c"
@@ -54,7 +60,7 @@ COPY --chown=nonroot:nonroot --from=build /tmp/runtime-data /app/data
 COPY --from=build /tmp/logseq-source.tar.gz /app/corresponding-source/logseq-source.tar.gz
 COPY --from=build /src/LICENSE.md /app/corresponding-source/UPSTREAM-LICENSE.md
 COPY server/ /app/corresponding-source/server/
-COPY LICENSE NOTICE LICENSING.md compose.yaml /app/corresponding-source/
+COPY LICENSE NOTICE LICENSING.md compose.yaml compose.public.yaml /app/corresponding-source/
 COPY third_party/ /app/corresponding-source/third_party/
 COPY --chown=nonroot:nonroot server/auth/ /app/auth/
 COPY server/admin/ /app/admin/

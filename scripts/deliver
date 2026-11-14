@@ -1,0 +1,5 @@
+#!/bin/sh
+# Submit/observe Jenkins through the operator's external trusted controller.
+set -eu
+: "${LOGSEQ_DELIVERY_CONTROLLER:?Set LOGSEQ_DELIVERY_CONTROLLER to the trusted delivery/public.py controller}"
+exec python3 "$LOGSEQ_DELIVERY_CONTROLLER" "$@"

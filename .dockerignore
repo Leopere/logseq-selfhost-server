@@ -6,6 +6,7 @@
 !NOTICE
 !LICENSING.md
 !compose.yaml
+!compose.public.yaml
 !third_party/
 !third_party/**
 server/**/__pycache__/

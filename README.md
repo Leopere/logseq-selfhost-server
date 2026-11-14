@@ -6,7 +6,33 @@ service, public signup, network admin API, or network MCP endpoint.
 
 Copyright (c) 2026 Colin Knapp, https://colinknapp.com
 
-## Start the server
+## Generate a public sync URL
+
+Start the server and its optional Cloudflare tunnel:
+
+```sh
+docker compose -f compose.yaml -f compose.public.yaml up -d --build
+./scripts/sync-url
+```
+
+The tunnel generates an internet-reachable `https://…trycloudflare.com` address.
+Paste that address into the client’s sync server URL field, then enter the
+operator-issued sync code. No Cloudflare account, domain, inbound port or
+Colin-hosted gateway is required. Each operator runs their own server.
+The address is public; graph access still requires an explicit console grant.
+
+Cloudflare [Quick Tunnels](https://developers.cloudflare.com/tunnel/get-started/quick-tunnels/)
+are temporary and have no uptime guarantee. The address changes when the
+tunnel is recreated. Read the new address with `./scripts/sync-url` and update
+your clients. For regular use, configure your own stable HTTPS domain below.
+The server waits for the tunnel, uses its address for asset links, and restarts
+if the tunnel address changes or its readiness lease expires. The URL command
+fails while the tunnel is unavailable; it never prints an access code.
+
+Use both Compose files for subsequent `exec`, `logs`, `restart` and `down`
+commands. Keep the `sync-data` volume.
+
+## Use a stable server URL
 
 Install Docker with Compose. From this source directory:
 
@@ -34,8 +60,8 @@ docker compose exec sync /nodejs/bin/node /app/auth/logseq-sync-admin.cjs revoke
 
 Use a compatible Logseq self-host client, configure your server URL, and paste
 the issued LS2 sync code. The compact code does not contain the server URL.
-Colin's existing preview client fixes its URL to his service; operators need
-a client configured for their own URL. An old client may generate a local
+Older preview clients fix their URL to Colin’s service. Use the updated
+client with an editable sync server URL for an independent deployment. An old client may generate a local
 code itself; that code gets no server access unless you deliberately import
 its public subject. Client bearer refresh alone never enrolls an identity.
 
